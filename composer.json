@@ -1,0 +1,27 @@
+{
+    "name": "datakom/datakomapi",
+    "description": "API for datakom",
+    "license": "BSD-3",
+    "authors": [
+        {
+            "name": "Martin Juul",
+            "email": "martin@juul.xyz",
+            "homepage": "https://juul.xyz"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.9",
+        "illuminate/database": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "config": {
+        "process-timeout": 0
+    },
+    "scripts": {
+        "start": "php -S localhost:8400 -t public index.php"
+    }
+}
