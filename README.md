@@ -23,3 +23,7 @@ Use composer to fire up the internal web server.
 ```$ composer start```
 
 The site will be visible at ```http://localhost:8400```
+
+# [License](DataKomAPI/LICENSE)
+
+The project is licensed under BSD 3-Clause License.
