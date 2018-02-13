@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\StudentType;
 
-use App\Models\Model as Model;
+use Illuminate\Database\Eloquent\Model;
 
 class StudentTypeGroup extends Model
 {

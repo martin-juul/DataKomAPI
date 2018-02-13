@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\StudentType;
 
-use App\Models\Model as Model;
+use Illuminate\Database\Eloquent\Model;
 
 class StudentType extends Model
 {
@@ -13,8 +13,8 @@ class StudentType extends Model
         'description'
     ];
 
-    public function StudentTypeGroup() {
+    public function groups() {
         return $this->belongsToMany('App\Models\StudentTypeGroup', 'student_types_to_group',
-            'student_type_id', '');
+            'student_type_id', 'student_group_id');
     }
 }

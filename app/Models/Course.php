@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Model as Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {

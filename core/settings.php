@@ -14,5 +14,15 @@ return [
             'collation' => 'utf8mb4_danish_ci',
             'prefix' => 'dk_'
         ],
+        'db_dev' => [
+            'driver' => 'mysql',
+            'host' => 'localhost',
+            'database' => 'datakom',
+            'username' => 'datakom_devusr',
+            'password' => 'cRyn0OdvgOX70WPPMmxOnN3Szzp',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_danish_ci',
+            'prefix' => 'dk_'
+        ]
     ]
 ];

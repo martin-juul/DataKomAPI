@@ -11,6 +11,19 @@ $capsule->addConnection($container['settings']['db']);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
+/**
+ * @return \Illuminate\Database\Capsule\Manager
+ */
 $container['db'] = function ($c) use ($capsule) {
     return $capsule;
+};
+
+// Repositories
+
+$container['courseRepository'] = function ($c) {
+    return new App\Repositories\CourseRepository;
+};
+
+$container['educationRepository'] = function ($c) {
+    return new App\Repositories\EducationRepository();
 };
