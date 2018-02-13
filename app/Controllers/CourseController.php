@@ -11,7 +11,7 @@ use Slim\Http\Response;
 final class CourseController extends BaseController
 {
     /** @var CourseRepository */
-    private $courseRepository;
+    private $courseRepo;
 
     /**
      * CourseController constructor.
@@ -22,17 +22,17 @@ final class CourseController extends BaseController
     public function __construct(ContainerInterface $c)
     {
         parent::__construct($c);
-        $this->courseRepository = $this->c->get('courseRepository');
+        $this->courseRepo = $this->c->get('courseRepository');
     }
 
     public function index(Request $request, Response $response) {
-        $courses = $this->courseRepository->all();
+        $courses = $this->courseRepo->all();
 
         return $response->withJson($courses);
     }
 
     public function getByCourseId(Request $request, Response $response, $args) {
-        $course = $this->courseRepository->getByCourseId($args['courseId']);
+        $course = $this->courseRepo->getByCourseId($args['courseId']);
 
         return $response->withJson($course);
     }
