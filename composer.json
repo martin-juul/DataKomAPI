@@ -22,6 +22,6 @@
         "process-timeout": 0
     },
     "scripts": {
-        "start": "php -S localhost:8400 -t public index.php"
+        "start": "php -S localhost:8400 -t public public/index.php"
     }
 }

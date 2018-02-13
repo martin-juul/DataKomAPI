@@ -27,3 +27,7 @@ $container['courseRepository'] = function ($c) {
 $container['educationRepository'] = function ($c) {
     return new App\Repositories\EducationRepository();
 };
+
+$container['studentTypeRepository'] = function ($c) {
+    return new App\Repositories\StudentTypeRepository();
+};

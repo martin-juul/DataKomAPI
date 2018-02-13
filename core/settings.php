@@ -9,7 +9,7 @@ return [
             'host' => 'localhost',
             'database' => 'datakom',
             'username' => 'datakom_usr',
-            'password' => '28At1PP6tNDdBvb46X7ww6Guvpc',
+            'password' => 'nRERwJJDU1sqACCk5ok5jHDZ90p',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_danish_ci',
             'prefix' => 'dk_'
@@ -19,7 +19,7 @@ return [
             'host' => 'localhost',
             'database' => 'datakom',
             'username' => 'datakom_devusr',
-            'password' => 'cRyn0OdvgOX70WPPMmxOnN3Szzp',
+            'password' => 'nRERwJJDU1sqACCk5ok5jHDZ90p',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_danish_ci',
             'prefix' => 'dk_'
