@@ -22,6 +22,7 @@ class StudentTypeRepository
         foreach ($groups as $assignedGroup) {
             foreach ($assignedGroup->studentTypes as $studentType) {
                 // Looping through all types, because eloquent is stupid.
+                // TODO: eager loading.
                 continue;
             }
             $result[] = [$assignedGroup];
