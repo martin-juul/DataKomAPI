@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-
 use App\Repositories\CourseRepository;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
