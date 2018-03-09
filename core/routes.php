@@ -2,14 +2,27 @@
 // Routes
 
 /** @var \Slim\App $app */
+$app->options('/{routes:.+}', function ($request, $response, $args) {
+    return $response;
+});
+
+$app->add(function ($req, $res, $next) {
+    $response = $next($req, $res);
+    return $response
+        ->withHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
+        ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+        ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+});
+
 $app->group('/v1', function () {
 
-    $this->group('/table', function () {
+    $this->group('/cards', function () {
+        $this->get('', 'App\Controllers\CardsController:index')->setName('allCards');
+    });
 
-        $this->group('/semester', function () {
-            $this->get('', 'App\Controllers\TableController:index')->setName('allSemesters');
-        });
-
+    $this->group('/content', function () {
+       $this->get('/cards', 'App\Controllers\ContentController:cards')->setName('allContentCards');
+       $this->get('/{id}', 'App\Controllers\ContentController:content')->setName('contentById');
     });
 
     $this->group('/courses', function () {
@@ -29,4 +42,15 @@ $app->group('/v1', function () {
         $this->get('/groups', 'App\Controllers\StudentTypeController:assignedGroups')->setName('studentTypesAssignedGroups');
     });
 
+    $this->group('/semesters', function () {
+        $this->get('/{groupId}/{eduId}', 'App\Controllers\SemesterController:getByEduId')->setName('semesterByGroupEduId');
+    });
+
+});
+
+// Catch-all route to serve a 404 Not Found page if none of the routes match
+// NOTE: make sure this route is defined last
+$app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
+    $handler = $this->notFoundHandler; // handle using the default Slim page not found handler
+    return $handler($req, $res);
 });

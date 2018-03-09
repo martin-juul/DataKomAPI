@@ -6,20 +6,20 @@ return [
 
         'db' => [
             'driver' => 'mysql',
-            'host' => 'localhost',
+            'host' => 'localhost:4306',
             'database' => 'datakom',
-            'username' => 'datakom_usr',
-            'password' => 'nRERwJJDU1sqACCk5ok5jHDZ90p',
+            'username' => 'root',
+            'password' => 'Raj6cNj7vRXNNW7zwuJ6Fe36nFv',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_danish_ci',
             'prefix' => 'dk_'
         ],
         'db_dev' => [
             'driver' => 'mysql',
-            'host' => 'localhost',
+            'host' => 'localhost:4306',
             'database' => 'datakom',
-            'username' => 'datakom_devusr',
-            'password' => 'nRERwJJDU1sqACCk5ok5jHDZ90p',
+            'username' => 'root',
+            'password' => 'Raj6cNj7vRXNNW7zwuJ6Fe36nFv',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_danish_ci',
             'prefix' => 'dk_'

@@ -7,8 +7,6 @@ Backend api for DataKom
   - [Slim 3](slimframework.com)
 + ORM
   - [Eloquent](https://laravel.com/docs/5.5/eloquent)
-+ Database
-  - [MariaDB](https://mariadb.org)
 
 # Getting Started
 
