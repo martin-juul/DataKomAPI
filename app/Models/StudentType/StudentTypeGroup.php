@@ -11,9 +11,15 @@ class StudentTypeGroup extends Model
     protected $fillable = [
         'name'
     ];
-    protected $relations = [StudentType::class];
+    protected $hidden = [
+        'id'
+    ];
 
-    public function studentTypes() {
-        return $this->hasMany('App\Models\StudentType\StudentType', 'student_type_group_id');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function studentTypes()
+    {
+        return $this->hasMany(StudentType::class, 'student_type_group_id');
     }
 }

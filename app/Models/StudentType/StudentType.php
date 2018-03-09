@@ -13,10 +13,15 @@ class StudentType extends Model
         'subtitle',
         'description'
     ];
-    protected $relations = [StudentTypeGroup::class];
+    protected $hidden = [
+        'id'
+    ];
 
-    public function groups() {
-        return $this->belongsToMany('App\Models\StudentType\StudentTypeGroup', 'student_types_to_group',
-            'student_type_id', 'student_group_id');
+    public function studentTypeGroups() {
+        return $this->belongsTo(
+            StudentTypeGroup::class,
+            'student_type_group_id',
+            'id'
+        );
     }
 }

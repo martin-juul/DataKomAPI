@@ -42,8 +42,6 @@ final class StudentTypeController extends BaseController
 
     public function assignedGroups(Request $request, Response $response)
     {
-
-
         return $response->withJson($this->studentRepo->assignedGroups());
     }
 }
