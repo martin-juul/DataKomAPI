@@ -33,11 +33,11 @@ $app->group('/v1', function () {
 
     $this->group('/educations', function () {
         $this->get('', 'App\Controllers\EducationController:index')->setName('allEdu');
-        $this->get('/{courseId}', 'App\Controllers\EducationController:getById')->setName('getEduById');
+        $this->get('/id/{courseId}', 'App\Controllers\EducationController:getById')->setName('getEduById');
     });
 
     $this->group('/studentTypes', function () {
-        $this->get('', 'App\Controllers\StudentTypeController:index')->setName('allStudentTypes');
+        $this->get('', 'App\Controllers\StudentTypeController:index')->setName('studentTypes');
         $this->get('/list-groups', 'App\Controllers\StudentTypeController:listGroups')->setName('allStudentTypeGroups');
         $this->get('/groups', 'App\Controllers\StudentTypeController:assignedGroups')->setName('studentTypesAssignedGroups');
     });
