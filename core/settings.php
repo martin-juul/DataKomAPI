@@ -1,5 +1,14 @@
 <?php
 return [
+    'app' => [
+        'url' => 'datakom.test',
+        'password' => [
+            'hash' => [
+                'algo' => PASSWORD_BCRYPT,
+                'cost' => 10
+            ],
+        ],
+    ],
     'settings' => [
         'displayErrorDetails' => true, // Set to false in prod!
         'addContentLengthHeader' => false, // Let the web server calculate the content length header
@@ -23,6 +32,10 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_danish_ci',
             'prefix' => 'dk_'
-        ]
+        ],
+
+        'eloquentfilter' => [
+            'namespace' => "App\\Models\\ModelFilters\\"
+        ],
     ]
 ];

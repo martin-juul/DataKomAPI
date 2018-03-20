@@ -17,6 +17,9 @@ $container['db'] = function ($c) use ($capsule) {
     return $capsule;
 };
 
+
+EloquentFilter\LumenServiceProvider::class;
+
 // Repositories
 
 $container['cardsRepository'] = function ($c) {
