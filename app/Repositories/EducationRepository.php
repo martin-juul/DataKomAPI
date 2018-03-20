@@ -17,4 +17,8 @@ class EducationRepository
         return Education::find($id, $columns);
     }
 
+    public function filter(string $columns)  {
+        return Education::GetColumns($columns);
+    }
+
 }

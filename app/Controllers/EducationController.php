@@ -19,13 +19,21 @@ class EducationController extends BaseController
         $this->edurepo = $this->c->get('educationRepository');
     }
 
-    public function index(Request $request, Response $response) {
-        $courses = $this->edurepo->all();
+    public function index(Request $request, Response $response)
+    {
+        $filter = $request->getParam('filter');
 
-        return $response->withJson($courses);
+        if ($filter) {
+            return $response->withJson($this->edurepo->filter($filter));
+        }
+
+        $educations = $this->edurepo->all();
+
+        return $response->withJson($educations);
     }
 
-    public function getById(Request $request, Response $response, $args) {
+    public function getById(Request $request, Response $response, $args)
+    {
         $course = $this->edurepo->find($args['id']);
 
         return $response->withJson($course);
