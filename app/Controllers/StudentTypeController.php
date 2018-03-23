@@ -32,6 +32,12 @@ final class StudentTypeController extends BaseController
      */
     public function index(Request $request, Response $response)
     {
+        $filter = $request->getParam('filter');
+
+        if ($filter) {
+            return $response->withJson($this->studentRepo->filter($filter));
+        }
+
         return $response->withJson($this->studentRepo->all());
     }
 
