@@ -26,7 +26,6 @@ $app->group('/v1', function () {
     });
 
     $this->group('/courses', function () {
-        // $this->get('{id}', 'App\Controllers\CourseController:getById')->setName('getCourseById');
         $this->get('', 'App\Controllers\CourseController:index')->setName('allCourses');
         $this->get('/{courseId}', 'App\Controllers\CourseController:getByCourseId')->setName('getCourseByCourseId');
     });
@@ -48,9 +47,28 @@ $app->group('/v1', function () {
 
 });
 
+$app->group('/cms', function () {
+
+    $this->get('', 'App\Controllers\Cms\AuthController:login');
+
+})->add($app->getContainer()->get('csrf'));
+
+$app->group('/', function () {
+
+    $this->get('', function($request, $response) {
+        return $response->write(file_get_contents(__DIR__ . '/../public/index.html'));
+    });
+
+    $this->get('{routes:.+}', function($request, $response) {
+        return $response->write(file_get_contents(__DIR__ . '/../public/index.html'));
+    });
+
+});
+
+
 // Catch-all route to serve a 404 Not Found page if none of the routes match
 // NOTE: make sure this route is defined last
-$app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
+$app->map(['POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
     $handler = $this->notFoundHandler; // handle using the default Slim page not found handler
     return $handler($req, $res);
 });
