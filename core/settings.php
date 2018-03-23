@@ -34,8 +34,6 @@ return [
             'prefix' => 'dk_'
         ],
 
-        'eloquentfilter' => [
-            'namespace' => "App\\Models\\ModelFilters\\"
-        ],
+        'templates' => __DIR__ . '/../templates',
     ]
 ];
