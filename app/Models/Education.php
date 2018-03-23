@@ -7,7 +7,6 @@ use Illuminate\Database\Capsule\Manager as DB;
 
 class Education extends Model
 {
-
     protected $table = 'educations';
     protected $primaryKey = 'id';
     protected $fillable = [
