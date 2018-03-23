@@ -20,4 +20,8 @@ class StudentTypeRepository
         return StudentTypeGroup::with('studentTypes')->get();
     }
 
+    public function filter(string $columns) {
+        return StudentType::GetColumns($columns);
+    }
+
 }
