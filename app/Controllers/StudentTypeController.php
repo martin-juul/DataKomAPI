@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-
 use App\Repositories\StudentTypeRepository;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
@@ -10,12 +9,12 @@ use Slim\Http\Response;
 
 final class StudentTypeController extends BaseController
 {
-    /** @var StudentTypeRepository */
+    /** @var \App\Repositories\StudentTypeRepository */
     private $studentRepo;
 
     /**
      * StudentTypeController constructor.
-     * @param ContainerInterface $c
+     * @param \Psr\Container\ContainerInterface ContainerInterface $c
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
@@ -26,8 +25,8 @@ final class StudentTypeController extends BaseController
     }
 
     /**
-     * @param Request $request
-     * @param Response $response
+     * @param \Slim\Http\Request $request
+     * @param \Slim\Http\Response $response
      * @return object
      */
     public function index(Request $request, Response $response)
