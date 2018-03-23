@@ -17,8 +17,25 @@ $container['db'] = function ($c) use ($capsule) {
     return $capsule;
 };
 
+// Twig
 
-EloquentFilter\LumenServiceProvider::class;
+$container['view'] = function ($c) {
+    $twig = new \Slim\Views\Twig($c['settings']['templates'], [
+        'cache' => false
+    ]);
+
+    // Instantiate and add Slim specific extension
+    $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
+    $twig->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
+    $twig->addExtension(new \App\Extensions\Twig\CsrfExtension($c['csrf']));
+
+    return $twig;
+};
+
+// Slim CSRF
+$container['csrf'] = function($container) {
+    return new \Slim\Csrf\Guard;
+};
 
 // Repositories
 
