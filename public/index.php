@@ -17,6 +17,14 @@ $app = new \Slim\App($settings);
 
 require __DIR__ . '/../core/dependencies.php';
 require __DIR__ . '/../core/middleware.php';
-require __DIR__ . '/../core/routes.php';
 
-$app->run();
+// CMS routes MUST be required before API routes, due to the catch-all
+require __DIR__ . '/../routes/cms.php';
+require __DIR__ . '/../routes/api.php';
+
+try {
+    $app->run();
+} catch (\Slim\Exception\MethodNotAllowedException $e) {
+} catch (\Slim\Exception\NotFoundException $e) {
+} catch (Exception $e) {
+}
