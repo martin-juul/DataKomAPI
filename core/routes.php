@@ -17,39 +17,59 @@ $app->add(function ($req, $res, $next) {
 $app->group('/v1', function () {
 
     $this->group('/cards', function () {
-        $this->get('', 'App\Controllers\CardsController:index')->setName('allCards');
+        $this->get('', \App\Controllers\CardsController::class . ':index')
+            ->setName('allCards');
     });
 
     $this->group('/content', function () {
-       $this->get('/cards', 'App\Controllers\ContentController:cards')->setName('allContentCards');
-       $this->get('/{id}', 'App\Controllers\ContentController:content')->setName('contentById');
+       $this->get('/cards', \App\Controllers\ContentController::class . ':cards')
+           ->setName('allContentCards');
+
+       $this->get('/{id}', \App\Controllers\ContentController::class . ':content')
+           ->setName('contentById');
     });
 
     $this->group('/courses', function () {
-        $this->get('', 'App\Controllers\CourseController:index')->setName('allCourses');
-        $this->get('/{courseId}', 'App\Controllers\CourseController:getByCourseId')->setName('getCourseByCourseId');
+        $this->get('', \App\Controllers\CourseController::class . 'index')
+            ->setName('allCourses');
+
+        $this->get('/{courseId}', \App\Controllers\CourseController::class . ':getByCourseId')
+            ->setName('getCourseByCourseId');
     });
 
     $this->group('/educations', function () {
-        $this->get('', 'App\Controllers\EducationController:index')->setName('allEdu');
-        $this->get('/id/{courseId}', 'App\Controllers\EducationController:getById')->setName('getEduById');
+        $this->get('', \App\Controllers\EducationController::class . ':index')
+            ->setName('allEdu');
+
+        $this->get('/id/{courseId}', \App\Controllers\EducationController::class . ':getById')
+            ->setName('getEduById');
     });
 
     $this->group('/studentTypes', function () {
-        $this->get('', 'App\Controllers\StudentTypeController:index')->setName('studentTypes');
-        $this->get('/list-groups', 'App\Controllers\StudentTypeController:listGroups')->setName('allStudentTypeGroups');
-        $this->get('/groups', 'App\Controllers\StudentTypeController:assignedGroups')->setName('studentTypesAssignedGroups');
+        $this->get('', \App\Controllers\StudentTypeController::class . ':index')
+            ->setName('studentTypes');
+
+        $this->get('/list-groups', \App\Controllers\StudentTypeController::class . ':listGroups')
+            ->setName('allStudentTypeGroups');
+
+        $this->get('/groups', 'App\Controllers\StudentTypeController:assignedGroups')
+            ->setName('studentTypesAssignedGroups');
     });
 
     $this->group('/semesters', function () {
-        $this->get('/{groupId}/{eduId}', 'App\Controllers\SemesterController:getByEduId')->setName('semesterByGroupEduId');
+        $this->get('/{groupId}/{eduId}', \App\Controllers\SemesterController::class . ':getByEduId')
+            ->setName('semesterByGroupEduId');
     });
 
 });
 
 $app->group('/cms', function () {
 
-    $this->get('', 'App\Controllers\Cms\AuthController:login');
+    $this->get('', \App\Controllers\Cms\Dashboard::class .':index')->setName('adminHome');
+
+    $this->get('/fag', 'App\Controllers\Cms\Dashboard:courses')->setName('adminCourseIndex');
+
+    $this->get('/{routes:.+}', \App\Controllers\Cms\ErrorController::class .':NotFound')->setName('adminErrorNotFound');
 
 })->add($app->getContainer()->get('csrf'));
 
