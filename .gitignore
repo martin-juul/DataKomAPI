@@ -13,3 +13,8 @@ composer.phar
 
 /.idea/*
 /.vscode/*
+
+/public/*.js
+/public/*.map
+/public/*.html
+/public/*.ico
