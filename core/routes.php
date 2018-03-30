@@ -65,11 +65,14 @@ $app->group('/v1', function () {
 
 $app->group('/cms', function () {
 
-    $this->get('', \App\Controllers\Cms\Dashboard::class .':index')->setName('adminHome');
+    $this->get('', \App\Controllers\Cms\Dashboard::class .':index')
+        ->setName('adminHome');
 
-    $this->get('/fag', 'App\Controllers\Cms\Dashboard:courses')->setName('adminCourseIndex');
+    $this->get('/fag', 'App\Controllers\Cms\Dashboard:courses')
+        ->setName('adminCourseIndex');
 
-    $this->get('/{routes:.+}', \App\Controllers\Cms\ErrorController::class .':NotFound')->setName('adminErrorNotFound');
+    $this->get('/{routes:.+}', \App\Controllers\Cms\ErrorController::class .':NotFound')
+        ->setName('adminErrorNotFound');
 
 })->add($app->getContainer()->get('csrf'));
 
