@@ -16,4 +16,11 @@ abstract class BaseController
     {
         $this->c = $c;
     }
+
+    public function __get($property)
+    {
+        if ($this->c->{$property}) {
+            return $this->c->{$property};
+        }
+    }
 }

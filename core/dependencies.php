@@ -21,13 +21,15 @@ $container['db'] = function ($c) use ($capsule) {
 
 $container['view'] = function ($c) {
     $twig = new \Slim\Views\Twig($c['settings']['templates'], [
-        'cache' => false
+        'cache' => false,
+        'debug' => true,
     ]);
 
     // Instantiate and add Slim specific extension
     $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
     $twig->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
     $twig->addExtension(new \App\Extensions\Twig\CsrfExtension($c['csrf']));
+    $twig->addExtension(new Twig_Extension_Debug());
 
     return $twig;
 };

@@ -16,7 +16,7 @@ return [
         'db' => [
             'driver' => 'mysql',
             'host' => 'localhost:4306',
-            'database' => 'datakom',
+            'database' => 'DataKomNew',
             'username' => 'root',
             'password' => 'Raj6cNj7vRXNNW7zwuJ6Fe36nFv',
             'charset' => 'utf8mb4',

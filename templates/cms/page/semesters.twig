@@ -1,0 +1,40 @@
+{% extends 'cms/layout.twig' %}
+
+{% block title %}Hovedforløb{% endblock %}
+
+{% block content %}
+    <main class="container-fluid cms-main">
+        <div class="container">
+            <div class="jumbotron jumbotron-fluid m-auto text-center">
+                <div class="container">
+                    <h1 class="display-4">Hovedforløb</h1>
+                    <p class="lead">Her kan du administerer hovedforløbene på siden.</p>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                {% for education in educations %}
+
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ education.education }}</h5>
+                                <div class="d-flex justify-content-around flex-column">
+                                    {% set eduId = education.educationId %}
+                                    {% for group in education.groups %}
+                                        <a class="btn btn-outline-primary mt-2"
+                                           href="{{ path_for('adminSemesterEdit', {'eduId': eduId, 'groupId': group.id}) }}">{{ group.name }}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </main>
+
+{% endblock %}

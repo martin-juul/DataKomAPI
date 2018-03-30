@@ -11,9 +11,6 @@ class StudentTypeGroup extends Model
     protected $fillable = [
         'name'
     ];
-    protected $hidden = [
-        'id'
-    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

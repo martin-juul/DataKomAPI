@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Repositories\ContentRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -25,8 +26,14 @@ final class ContentController extends BaseController
     }
 
     public function content(Request $request, Response $response, $args) {
-        $content = $this->contentRepo->getContent($args['id']);
-
-        return $response->withJson($content);
+        try {
+            $content = $this->contentRepo->getContent($args['id']);
+            return $response->withJson($content);
+        } catch(ModelNotFoundException $e) {
+            return $response->withStatus(404)->withJson([
+                'status' => 404,
+                'error' => 'Resource was not found'
+            ]);
+        }
     }
 }

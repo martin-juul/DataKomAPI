@@ -1,0 +1,14 @@
+{% extends 'cms/layout.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="container mt-5 pt-5">
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">{{ title }}.</h4>
+            <p>{{ body }}</p>
+            <hr>
+            <p class="mb-0"><a href="/cms">Klik her for at gå til forsiden</a></p>
+        </div>
+    </div>
+{% endblock %}

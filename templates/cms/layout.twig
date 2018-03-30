@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %} | DataKom CMS</title>
+    <link href="/assets/cms/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/cms/css/datatables.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <link href="/assets/cms/css/main.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body class="cms-bg-light">
+{% embed 'cms/component/nav.twig' %}
+{% endembed %}
+
+{% block content  %}
+{% endblock %}
+
+<script src="/assets/cms/js/datatables.min.js"></script>
+<script src="/assets/cms/js/popper.min.js"></script>
+<script src="/assets/cms/js/bootstrap.min.js"></script>
+<script src="/assets/cms/js/main.js"></script>
+{% block javascript %}
+{% endblock %}
+</body>
+</html>

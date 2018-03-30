@@ -30,7 +30,7 @@ final class CourseController extends BaseController
         return $response->withJson($courses);
     }
 
-    public function getByCourseId(Request $request, Response $response, $args) {
+    public function getByCourseId(Request $request, Response $response, array $args) {
         $course = $this->courseRepo->getByCourseId($args['courseId']);
 
         return $response->withJson($course);

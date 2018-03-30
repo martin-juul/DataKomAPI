@@ -8,7 +8,17 @@ use App\Models\Semesters;
 
 class SemesterRepository
 {
-    public function getSemesterCoursesByEducation(int $studentTypeGroupId, int $educationId) {
+    public function getSemesterIdBySemesterEduId(int $semester, int $educationId)
+    {
+        return Semesters::where([
+           'semester' => $semester,
+           'education_id' => $educationId
+        ])->get(['semester', 'education_id', 'semester_id'])
+            ->pluck('semester_id');
+    }
+
+    public function getSemesterCoursesByEducation(int $studentTypeGroupId, int $educationId)
+    {
         $items = Semesters::getSemestersByGroupId($studentTypeGroupId, $educationId);
         $tree = [];
 
@@ -34,4 +44,5 @@ class SemesterRepository
         // Effectively flattening the array by one dimension.
         return array_values($tree);
     }
+
 }

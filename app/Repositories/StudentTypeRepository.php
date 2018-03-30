@@ -12,6 +12,10 @@ class StudentTypeRepository
         return StudentType::all();
     }
 
+    public function findGroupById(int $id) {
+        return StudentTypeGroup::findOrFail($id);
+    }
+
     public function listGroups() {
         return StudentTypeGroup::all();
     }

@@ -1,0 +1,228 @@
+{% extends 'cms/layout.twig' %}
+
+{% block title %}Rediger Hovedforløb{% endblock %}
+
+{% block content %}
+    <main class="container-fluid cms-main"
+          data-education-id="{{ education.id|raw }}"
+          data-student-type-group-id="{{ studentTypeGroup.id|raw }}">
+
+        <div class="container m-auto">
+            <div class="jumbotron jumbotron-fluid m-auto text-center">
+                <div class="container">
+                    <h1 class="display-4">{{ education.name }}</h1>
+                    <p class="lead">Gruppe: {{ studentTypeGroup.name }}</p>
+                    <p><a href="#" class="btn btn-info" id="createSemester">Opret hovedforløb</a></p>
+                </div>
+            </div>
+
+            {% for semester in semesters %}
+                <p class="h3 text-center mt-5">Hovedforløb: {{ semester.semester }}</p>
+
+                <span class="float-right cms-semester-btn-group">
+                    <button class="btn btn-primary addCourseBtn"
+                            data-semester="{{ semester.semester|raw }}"
+                            data-toggle="modal"
+                            data-target="#addCourseModal">Tilføj fag</button>
+                </span>
+
+                <table class="table mt-5 semesterTable" data-semester="{{ semester.semester|raw }}">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Fag nr.</th>
+                        <th scope="col">Navn</th>
+                        <th scope="col" class="text-center">Antal uger</th>
+                        <th scope="colgroup" class="text-center"></th>
+                    </tr>
+                    </thead>
+                    <tfoot class="thead-dark">
+                    <tr>
+                        <th scope="col">Fag nr.</th>
+                        <th scope="col">Navn</th>
+                        <th scope="col" class="text-center">Antal uger</th>
+                        <th scope="colgroup" class="text-center"></th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for course in semester.courses %}
+                        <tr data-course-number="{{ course.course_no|raw }}">
+                            <td>{{ course.course_no }}</td>
+                            <td>{{ course.name }}</td>
+                            <td class="text-center">{{ course.length }}</td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-primary" title="Rediger">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <a href="#" class="btn btn-danger" title="Slet">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            {% endfor %}
+
+        </div>
+
+    </main>
+
+
+    <!-- Add Semester Modal -->
+    <div class="modal fade" id="addSemesterModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Opret hovedforløb</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/cms/data/semester/course" method="post">
+                    <div class="modal-body">
+                        <div>
+                            <div class="form-group">
+                                <label for="semesterNo">Nummer</label>
+                                <input class="form-control" name="semester_no" id="semesterNo" type="number"
+                                       placeholder="eks. 1" minlength="1" maxlength="3" required>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="educationId" value="{{ education.id|raw }}">
+                    <input type="hidden" name="studentTypeGroupId" value="{{ studentTypeGroup.id|raw }}">
+                    <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+                    <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Fortryd</button>
+                        <button type="submit" class="btn btn-primary">Gem</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Course Modal -->
+    <div class="modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Tilføj fag til hovedforløb SEMESTER</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/cms/data/semester/course" method="post">
+                    <div class="modal-body">
+                        <div>
+
+                            <div class="form-group">
+                                <label for="courseSelector">Vælg Fag</label>
+                                <select class="form-control" name="course_no" id="courseSelector">
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="antalUger">Antal Uger</label>
+                                <input class="form-control" name="weeks" id="antalUger" type="text"
+                                       placeholder="Antal uger" maxlength="6" required>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="add-course-semester" name="semester" value="">
+                    <input type="hidden" name="educationId" value="{{ education.id|raw }}">
+                    <input type="hidden" name="studentTypeGroupId" value="{{ studentTypeGroup.id|raw }}">
+                    <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+                    <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Fortryd</button>
+                        <button type="submit" class="btn btn-primary">Gem</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function () {
+
+            var table = $('.semesterTable');
+
+            var t = table.DataTable({
+                "paging": false,
+                "ordering": false,
+                "info": true,
+                "searching": false,
+                "language": {
+                    "info": "Antal fag: _TOTAL_"
+                }
+            });
+
+            $('.semesterTable tbody').on('click', 'td', function () {
+                var row = t.row(this).node();
+                var tableNode = t.table().node();
+                var main = $('main');
+
+                var rowInfo = {
+                    "courseId": $(row).data('course-number'),
+                    "semester": $(tableNode).data('semester'),
+                    "educationId": main.data('education-id'),
+                    "studentTypeGroupId": main.data('student-type-group-id')
+                };
+                console.log(rowInfo);
+            });
+
+            var courseModal = $('#addCourseModal');
+            var modalTitle = $('#modal-title');
+
+            $('.addCourseBtn').on('click', function (e) {
+                e.stopPropagation();
+                var semester = $(this).data('semester');
+                $(modalTitle).text('Tilføj fag til hovedforløb ' + semester);
+                $('#add-course-semester').val(semester);
+
+                courseModal.modal('show');
+
+                $.getJSON("/cms/data/courses", function (data) {
+                    $('#courseSelector option').remove();
+                    $.each(data, function () {
+                        var displayNo = undefined;
+
+                        if (this.course_no === null) {
+                            this.displayNo = '';
+                        } else {
+                            this.displayNo = this.course_no + " - ";
+                        }
+
+                        var course_select = $('#courseSelector');
+
+                        course_select.append('<option value="' + this.course_no + '">' + this.displayNo + this.name + '</option>');
+
+                        var course_options = $('#courseSelector option');
+                        var selected = course_select.val();
+
+                        course_options.sort(function(a,b) {
+                            if (a.value > b.value) return 1;
+                            if (a.value < b.value) return -1;
+                            return 0;
+                        });
+
+                        course_select.empty().append(course_options);
+                        course_select.val(selected);
+                    })
+                });
+            });
+
+            var semesterModal = $('#addSemesterModal');
+
+            $('#createSemester').on('click', function (e) {
+                e.stopPropagation();
+                semesterModal.modal('show');
+
+
+            });
+        });
+    </script>
+{% endblock %}
