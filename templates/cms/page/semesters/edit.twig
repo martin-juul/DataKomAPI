@@ -252,22 +252,6 @@
 
             });
 
-            function cmsSendForm(event, url, form, modal) {
-                event.preventDefault();
-                event.stopPropagation();
-
-                $.ajax({
-                    type: 'post',
-                    url: url,
-                    data: $(form).serialize(),
-                    success: function () {
-                        $(modal).modal('hide');
-                        $(form)[0].reset();
-                        location.reload(true);
-                    }
-                });
-            }
-
             $('#semesterForm').on('submit', function (e) {
                 cmsSendForm(e, '/cms/data/semester', '#semesterForm', '#addSemesterModal')
             });
