@@ -35,12 +35,13 @@ try {
         });
 
         $this->group('/data', function () {
-           $this->get('/courses', \App\Controllers\Cms\Crud::class . ':getCourses')
-            ->setName('adminCrudGetMissingCourses');
+            $this->get('/courses', \App\Controllers\Cms\Crud::class . ':getCourses')
+                ->setName('adminCrudGetMissingCourses');
 
-           $this->group('/semester', function () {
-              $this->post('/course', \App\Controllers\Cms\Crud::class . ':assignCourseToSemester');
-           });
+            $this->group('/semester', function () {
+                $this->post('', \App\Controllers\Cms\Crud::class . ':addSemester');
+                $this->post('/course', \App\Controllers\Cms\Crud::class . ':assignCourseToSemester');
+            });
 
         });
 
