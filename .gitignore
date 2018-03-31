@@ -18,3 +18,4 @@ composer.phar
 /public/*.map
 /public/*.html
 /public/*.ico
+/cache/twig
