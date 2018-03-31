@@ -10,14 +10,14 @@ class Auth
     {
         $user = User::where('email', $email)->first();
 
-        var_dump($user);
-
         if (!$user) {
             return false;
         }
 
         if (password_verify($password, $user->password)) {
             $_SESSION['user'] = $user->user_id;
+            $user->last_login = new \DateTime();
+            $user->save();
             return true;
         }
 
