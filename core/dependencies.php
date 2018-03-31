@@ -21,7 +21,7 @@ $container['db'] = function ($c) use ($capsule) {
 
 $container['view'] = function ($c) {
     $twig = new \Slim\Views\Twig($c['settings']['templates'], [
-        'cache' => false,
+        'cache' => __DIR__ . '/../cache/twig',
         'debug' => true,
     ]);
 
@@ -29,14 +29,21 @@ $container['view'] = function ($c) {
     $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
     $twig->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
     $twig->addExtension(new \App\Extensions\Twig\CsrfExtension($c['csrf']));
+    $twig->addExtension(new \App\Extensions\Twig\EncodeDecodeExtension());
     $twig->addExtension(new Twig_Extension_Debug());
+    $twig->addExtension(new \nochso\HtmlCompressTwig\Extension());
+
+    // Globals
+    $twig->getEnvironment()->addGlobal('currentUrl',$c->get('request')->getUri());
 
     return $twig;
 };
 
 // Slim CSRF
 $container['csrf'] = function($container) {
-    return new \Slim\Csrf\Guard;
+    $guard =  new \Slim\Csrf\Guard;
+    $guard->setPersistentTokenMode(true);
+    return $guard;
 };
 
 // Repositories
