@@ -17,11 +17,24 @@ $container['db'] = function ($c) use ($capsule) {
     return $capsule;
 };
 
+// Slim CSRF
+$container['csrf'] = function($c) {
+    $guard =  new \Slim\Csrf\Guard;
+    $guard->setPersistentTokenMode(true);
+    return $guard;
+};
+
+// Auth
+$container['auth'] = function($c) {
+    return new \App\Auth\Auth;
+};
+
+
 // Twig
 
 $container['view'] = function ($c) {
     $twig = new \Slim\Views\Twig($c['settings']['templates'], [
-        'cache' => __DIR__ . '/../cache/twig',
+        'cache' => false, //__DIR__ . '/../cache/twig',
         'debug' => true,
     ]);
 
@@ -35,15 +48,12 @@ $container['view'] = function ($c) {
 
     // Globals
     $twig->getEnvironment()->addGlobal('currentUrl',$c->get('request')->getUri());
+    $twig->getEnvironment()->addGlobal('auth', [
+        'check' => $c->auth->isLoggedIn(),
+        'user' => $c->auth->user(),
+    ]);
 
     return $twig;
-};
-
-// Slim CSRF
-$container['csrf'] = function($container) {
-    $guard =  new \Slim\Csrf\Guard;
-    $guard->setPersistentTokenMode(true);
-    return $guard;
 };
 
 // Repositories

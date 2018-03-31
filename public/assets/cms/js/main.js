@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    $('table.data-table').DataTable( {
+$(document).ready(function () {
+    $('table.data-table').DataTable({
         "language": {
             "lengthMenu": "Vis _MENU_ emner per side",
             "zeroRecords": "Ingen resultater",
@@ -9,13 +9,15 @@ $(document).ready(function() {
             "decimal": ",",
             "thousands": ".",
             "paginate": {
-              "next": "Næste",
-              "previous": "Forrige"
+                "next": "Næste",
+                "previous": "Forrige"
             },
             "search": "Søg"
         }
-    } );
-} );
+    });
+
+   // $('.collapse').collapse()
+});
 
 function cmsSendForm(event, url, form, modal) {
     event.preventDefault();

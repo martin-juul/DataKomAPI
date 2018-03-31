@@ -1,35 +1,67 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <a href="{{ path_for('adminHome') }}" class="navbar-brand mr-auto">
-        Content Management
+    <a href="{{ path_for('adminHome') }}" class="navbar-brand">
+        DataKom CMS
     </a>
 
-    <ul class="navbar-nav">
+    {% if auth.check %}
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto mr-auto">
 
-        <li class="nav-item">
-            <a href="{{ path_for('adminHome') }}" class="nav-link">Hjem</a>
-        </li>
+                <li class="nav-item">
+                    <a href="{{ path_for('adminHome') }}" class="nav-link">Hjem</a>
+                </li>
 
-        <li class="nav-item">
-            <a href="/cms/indhold" class="nav-link">Indhold</a>
-        </li>
+                <li class="nav-item">
+                    <a href="/cms/indhold" class="nav-link">Indhold</a>
+                </li>
 
-        <li class="nav-item">
-            <a href="/cms/uddannelser" class="nav-link">Uddannelser</a>
-        </li>
+                <li class="nav-item">
+                    <a href="{{ path_for('adminEdu') }}" class="nav-link">Uddannelser</a>
+                </li>
 
-        <li class="nav-item">
-            <a href="{{ path_for('adminSemesters') }}" class="nav-link">Hovedforløb</a>
-        </li>
+                <li class="nav-item">
+                    <a href="{{ path_for('adminSemesters') }}" class="nav-link">Hovedforløb</a>
+                </li>
 
-        <li class="nav-item">
-            <a href="{{ path_for('adminCourseIndex') }}" class="nav-link">Fag</a>
-        </li>
+                <li class="nav-item">
+                    <a href="{{ path_for('adminCourseIndex') }}" class="nav-link">Fag</a>
+                </li>
 
-        <li class="nav-item">
-            <a href="#" class="nav-link">Indstillinger</a>
-        </li>
+            </ul>
 
-    </ul>
+            <ul class="navbar-nav mr-4">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle btn btn-outline-primary" data-toggle="dropdown" role="button"
+                       aria-haspopup="true"
+                       aria-expanded="false">Brugere<span
+                                class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right mt-2 mr-0 text-center">
+                        <li class="dropdown-item"><a href="{{ path_for('adminSignUp') }}">Opret</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+
+            <ul class="navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle btn btn-outline-info" data-toggle="dropdown" role="button"
+                       aria-haspopup="true"
+                       aria-expanded="false">{{ auth.user.firstname }} {{ auth.user.lastname|first }}.<span
+                                class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right mt-3 mr-0">
+                        <li class="dropdown-item"><a href="#">Skift kodeord</a></li>
+                        <li class="dropdown-item"><a href="{{ path_for('adminSignOut') }}">Log ud</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
 
 </nav>

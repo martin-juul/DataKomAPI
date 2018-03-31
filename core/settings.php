@@ -8,6 +8,9 @@ return [
                 'cost' => 10
             ],
         ],
+        'session' => [
+            'name' => 'DataKomUid'
+        ],
     ],
     'settings' => [
         'displayErrorDetails' => true, // Set to false in prod!

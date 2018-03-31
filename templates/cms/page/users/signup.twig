@@ -1,0 +1,45 @@
+{% extends 'cms/layout.twig' %}
+
+{% block title %}Registrer{% endblock %}
+
+{% block content %}
+
+    <div class="row mt-5">
+        <div class="col-8 col-md-4 m-auto">
+            <div class="card cms-shadow">
+                <div class="card-body">
+                    <h1 class="h3">Opret Bruger</h1>
+                    <hr>
+                    <form action="{{ path_for('adminSignUp') }}" method="post"
+                          class="offset-1 offset-md-2 col-10 col-md-8">
+                        <div class="form-group">
+                            <label for="first_name">Fornavn</label>
+                            <input class="form-control" type="text" name="first_name" id="first_name"
+                                   placeholder="Børge">
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Efternavn</label>
+                            <input class="form-control" type="text" name="last_name" id="last_name"
+                                   placeholder="Mogensen">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" type="email" name="email" id="email"
+                                   placeholder="børge@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Kodeord</label>
+                            <input class="form-control" type="password" name="password" id="password" minlength="6" required>
+                        </div>
+                        <input type="hidden" name="{{ csrf.keys.name }}" value="{{ csrf.name }}">
+                        <input type="hidden" name="{{ csrf.keys.value }}" value="{{ csrf.value }}">
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Opret</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

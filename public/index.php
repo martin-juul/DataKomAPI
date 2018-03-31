@@ -10,9 +10,12 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 require __DIR__ . '/../vendor/autoload.php';
-session_start();
-
 $settings = require __DIR__ .'/../core/settings.php';
+
+session_start([
+    'name' => $settings['app']['session']['name']
+]);
+
 $app = new \Slim\App($settings);
 
 require __DIR__ . '/../core/dependencies.php';

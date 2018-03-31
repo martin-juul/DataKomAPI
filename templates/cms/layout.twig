@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %} | DataKom CMS</title>
     <link href="/assets/cms/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    {% if auth.check %}
     <link rel="stylesheet" href="/assets/cms/css/datatables.min.css">
+    {% endif %}
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
     <link href="/assets/cms/css/main.css" rel="stylesheet" crossorigin="anonymous">
 </head>
@@ -18,10 +20,14 @@
 {% block content  %}
 {% endblock %}
 
+{% if auth.check %}
 <script src="/assets/cms/js/datatables.min.js"></script>
+{% endif %}
 <script src="/assets/cms/js/popper.min.js"></script>
 <script src="/assets/cms/js/bootstrap.min.js"></script>
+{% if auth.check %}
 <script src="/assets/cms/js/main.js"></script>
+{% endif %}
 {% block javascript %}
 {% endblock %}
 </body>
