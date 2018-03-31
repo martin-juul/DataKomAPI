@@ -16,7 +16,15 @@ class CourseRepository
     }
 
     public function getByCourseNo($courseNo) {
-        return Course::where('course_no', $courseNo)->firstOrFail();
+        $course =  Course::where('course_no', $courseNo)->first();
+
+        if ($course) {
+            $course = $course->toArray();
+        } else {
+            $course = null;
+        }
+
+        return $course;
     }
 
     public function getById($id) {

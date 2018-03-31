@@ -8,12 +8,13 @@ use App\Models\Semesters;
 
 class SemesterRepository
 {
-    public function getSemesterIdBySemesterEduId(int $semester, int $educationId)
+    public function getSemesterIdBySemesterEduId(int $semester, int $educationId, int $studentTypeGroupId)
     {
         return Semesters::where([
            'semester' => $semester,
-           'education_id' => $educationId
-        ])->get(['semester', 'education_id', 'semester_id'])
+           'education_id' => $educationId,
+           'student_type_group_id' => $studentTypeGroupId
+        ])->get(['semester', 'education_id', 'semester_id', 'student_type_group_id'])
             ->pluck('semester_id');
     }
 

@@ -26,13 +26,15 @@ class Course extends Model
                 'course_id' => $courseId
             ]);
 
-        DB::table('course_length')
-            ->insert([
-                'course_id' => $courseId,
-                'student_group_id' => $studentTypeGroupId,
-                'semester_id' => $semesterId,
-                'course_length' => $weeks
-            ]);
+        if ($courseId) {
+            DB::table('course_length')
+                ->insert([
+                    'course_id' => $courseId,
+                    'student_group_id' => $studentTypeGroupId,
+                    'semester_id' => $semesterId,
+                    'course_length' => $weeks
+                ]);
+        }
     }
 
 }

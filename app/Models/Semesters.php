@@ -12,10 +12,9 @@ class Semesters extends Model
     protected $table = self::TABLE_NAME;
     protected $primaryKey = 'semester_id';
     protected $fillable = [
-        'semester'
-    ];
-    protected $hidden = [
-        'semester_id'
+        'semester',
+        'student_type_group_id',
+        'education_id'
     ];
 
     /**
