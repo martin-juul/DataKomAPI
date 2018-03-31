@@ -177,19 +177,6 @@
                 }
             });
 
-            /*$('.semesterTable tbody').on('click', 'td', function () {
-                var row = t.row(this).node();
-                var tableNode = t.table().node();
-                var main = $('main');
-
-                var rowInfo = {
-                    "courseId": $(row).data('course-number'),
-                    "semester": $(tableNode).data('semester'),
-                    "educationId": main.data('education-id'),
-                    "studentTypeGroupId": main.data('student-type-group-id')
-                };
-            });*/
-
             $('.addCourseBtn').on('click', function (e) {
                 e.stopPropagation();
                 var courseModal = $('#addCourseModal');
