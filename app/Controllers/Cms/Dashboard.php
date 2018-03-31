@@ -43,10 +43,6 @@ final class Dashboard extends BaseController
     {
         $courses = $this->courseRepo->all()->toArray();
 
-        /*echo '<pre>';
-        print_r($courses);
-        echo '</pre>';*/
-
         $this->c->view->render($response, 'cms/page/courses.twig', [
             'courses' => $courses
         ]);
