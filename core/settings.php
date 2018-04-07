@@ -18,19 +18,9 @@ return [
 
         'db' => [
             'driver' => 'mysql',
-            'host' => 'localhost:4306',
-            'database' => 'DataKomNew',
-            'username' => 'root',
-            'password' => 'Raj6cNj7vRXNNW7zwuJ6Fe36nFv',
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_danish_ci',
-            'prefix' => 'dk_'
-        ],
-        'db_dev' => [
-            'driver' => 'mysql',
-            'host' => 'localhost:4306',
-            'database' => 'datakom',
-            'username' => 'root',
+            'host' => 'backend-db',
+            'database' => 'DataKom',
+            'username' => 'DataKom',
             'password' => 'Raj6cNj7vRXNNW7zwuJ6Fe36nFv',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_danish_ci',
